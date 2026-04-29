@@ -5,10 +5,11 @@ export default defineConfig({
     name: 'node',
     include: [
       'src/collections/**/*.test.ts',
+      'src/fields/**/*.test.ts',
       'src/app/(payload)/**/*.test.ts',
       'src/app/my-route/**/*.test.ts',
-      'src/lib/server/*.test.ts',
-      'src/lib/common/*.test.ts',
+      'src/lib/server/**/*.test.ts',
+      'src/lib/common/**/*.test.ts',
       'src/payload.config.test.ts',
     ],
     environment: 'node',

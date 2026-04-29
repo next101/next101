@@ -1,6 +1,7 @@
 export { AuthCard } from './AuthCard'
 export { AuthHeader } from './AuthHeader'
 export { Logo, LogoWithTitle } from './Logo'
+export { PageTitle } from './PageTitle'
 export { IconBrandPayload } from './PayloadIcon'
 export { SignOutOverlay } from './SignOutOverlay'
 export { UserAvatar } from './UserAvatar'

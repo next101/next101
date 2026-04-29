@@ -40,6 +40,7 @@
     "@tiptap/starter-kit": "^3.22.2",
     "better-auth": "^1.6.1",
     "dayjs": "^1.11.20",
+    "dompurify": "^3.2.7",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "graphql": "^16.8.1",
@@ -52,6 +53,7 @@
     "react-dom": "19.2.4",
     "recharts": "^3.8.1",
     "resend": "^6.10.0",
+    "server-only": "^0.0.1",
     "sharp": "^0.34.5",
     "zod": "^4.3.6"
   },

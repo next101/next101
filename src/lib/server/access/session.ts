@@ -5,7 +5,23 @@ import { redirect } from 'next/navigation'
 import { cache } from 'react'
 import { siteLinks } from '@/config'
 import { getSafeRedirectUrl } from '@/lib/common/redirect'
-import { auth } from './auth'
+import { auth } from '../auth'
+
+/**
+ * Gets the current session without redirecting.
+ *
+ * Use this in Server Actions where you want to handle
+ * unauthenticated users manually (e.g., throw an error).
+ *
+ * Wrapped with React.cache() to deduplicate calls within a single render pass.
+ */
+export const getSession = cache(async function getSession() {
+  const headersList = await headers()
+
+  return auth.api.getSession({
+    headers: headersList,
+  })
+})
 
 /**
  * Verifies the current session by calling better-auth's getSession.

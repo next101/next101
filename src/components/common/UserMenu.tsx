@@ -1,7 +1,12 @@
 'use client'
 
 import { Menu, Text } from '@mantine/core'
-import { IconDashboard, IconLogout, IconSettings } from '@tabler/icons-react'
+import {
+  IconDashboard,
+  IconLogout,
+  IconNotes,
+  IconSettings,
+} from '@tabler/icons-react'
 import type { User } from 'better-auth'
 import { useRouter } from 'next/navigation'
 import { icon, sizes } from '@/app/(frontend)/design'
@@ -43,6 +48,14 @@ export function UserMenu({ user }: UserMenuProps) {
             onClick={() => router.push(siteLinks.dashboard)}
           >
             Dashboard
+          </Menu.Item>
+          <Menu.Item
+            leftSection={
+              <IconNotes size={icon.sizes.md} stroke={icon.strokes.md} />
+            }
+            onClick={() => router.push(siteLinks.notes.landing)}
+          >
+            Notes
           </Menu.Item>
           <Menu.Item
             leftSection={

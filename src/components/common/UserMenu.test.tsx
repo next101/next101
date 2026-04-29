@@ -114,6 +114,41 @@ describe('UserMenu', () => {
       ).toBeInTheDocument()
     })
 
+    describe('Notes menu item', () => {
+      it('renders with IconNotes', async () => {
+        const { container } = render(<UserMenu user={verifiedUser} />, {
+          wrapper: MantineWrapper,
+        })
+
+        const avatar = getByTestId(container, 'user-avatar')
+        fireEvent.click(avatar as Element)
+
+        await waitFor(() => {
+          const notesItem = within(document.body).getByText('Notes')
+          const menuItem = notesItem.parentElement
+          expect(menuItem).toHaveClass('mantine-Menu-item')
+          const icon = menuItem?.querySelector('svg.tabler-icon-notes')
+          expect(icon).toBeInTheDocument()
+        })
+      })
+
+      it('navigates to notes when clicked', async () => {
+        const { container } = render(<UserMenu user={verifiedUser} />, {
+          wrapper: MantineWrapper,
+        })
+
+        const avatar = getByTestId(container, 'user-avatar')
+        expect(avatar).toBeInTheDocument()
+        fireEvent.click(avatar as Element)
+
+        const notesItem = await waitFor(() =>
+          within(document.body).getByText('Notes')
+        )
+        fireEvent.click(notesItem)
+        expect(mockPush).toHaveBeenCalledWith(siteLinks.notes.landing)
+      })
+    })
+
     describe('Dashboard menu item', () => {
       it('renders with IconDashboard', async () => {
         const { container } = render(<UserMenu user={verifiedUser} />, {

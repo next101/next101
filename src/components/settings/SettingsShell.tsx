@@ -1,18 +1,11 @@
 'use client'
 
-import {
-  alpha,
-  Box,
-  Container,
-  Flex,
-  NavLink,
-  Stack,
-  Title,
-} from '@mantine/core'
+import { Box, Container, Flex, NavLink, Stack } from '@mantine/core'
 import { IconLock, IconUser } from '@tabler/icons-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { icon, sizes } from '@/app/(frontend)/design'
+import { PageTitle } from '@/components/common'
 import { siteLinks } from '@/config'
 
 interface SettingsNavLinkProps {
@@ -52,17 +45,7 @@ export function SettingsShell({ children }: SettingsShellProps) {
   return (
     <Container size="xl" py="xl">
       <Stack gap={'xl'}>
-        <Title
-          order={1}
-          style={{
-            paddingBottom: sizes.x2,
-            borderBottomWidth: 1,
-            borderBottomStyle: 'solid',
-            borderBottomColor: alpha('var(--mantine-color-dark-5)', 0.2),
-          }}
-        >
-          Settings
-        </Title>
+        <PageTitle title="Settings" />
         <Flex
           gap={'md'}
           direction={{

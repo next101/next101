@@ -1,2 +1,4 @@
+export { isCustomer, isOwner, isPayloadUser } from './access/payload'
+export { getSession, verifySession } from './access/session'
 export { auth } from './auth'
-export { verifySession } from './dal'
+export { getPayloadClient } from './payload'

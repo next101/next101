@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { createMockSession } from '@/test'
 
-// Mock server-only before importing the module under test
 vi.mock('server-only', () => ({}))
 
 vi.mock('next/headers', () => ({
@@ -11,7 +11,7 @@ vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
 }))
 
-vi.mock('./auth', () => ({
+vi.mock('../auth', () => ({
   auth: {
     api: {
       getSession: vi.fn(),
@@ -30,31 +30,10 @@ vi.mock('@/config', () => ({
 
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { auth } from './auth'
-import { verifySession } from './dal'
+import { auth } from '../auth'
+import { getSession, verifySession } from './session'
 
 const mockHeaders = new Headers()
-
-function createMockSession() {
-  return {
-    session: {
-      id: 'sess_123',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      userId: 'user_123',
-      expiresAt: new Date(Date.now() + 3600_000),
-      token: 'token_abc',
-    },
-    user: {
-      id: 'user_123',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      email: 'test@example.com',
-      emailVerified: true,
-      name: 'Test User',
-    },
-  }
-}
 
 describe('verifySession', () => {
   beforeEach(() => {
@@ -65,7 +44,7 @@ describe('verifySession', () => {
   })
 
   it('returns the session when the user is authenticated', async () => {
-    const mockSession = createMockSession()
+    const mockSession = createMockSession('user-123')
     vi.mocked(auth.api.getSession).mockResolvedValue(mockSession)
 
     const session = await verifySession()
@@ -120,7 +99,6 @@ describe('verifySession caching', () => {
   it('is wrapped with React.cache()', async () => {
     const cacheFn = vi.fn((fn) => fn)
 
-    // Reset module registry so we can re-import dal.ts with a mocked react/cache
     vi.resetModules()
 
     vi.doMock('react', async () => {
@@ -128,7 +106,6 @@ describe('verifySession caching', () => {
       return { ...actual, cache: cacheFn }
     })
 
-    // Re-mock dependencies cleared by resetModules
     vi.doMock('server-only', () => ({}))
     vi.doMock('next/headers', () => ({ headers: vi.fn() }))
     vi.doMock('next/navigation', () => ({ redirect: vi.fn() }))
@@ -139,9 +116,37 @@ describe('verifySession caching', () => {
       siteLinks: { auth: { signIn: '/auth/sign-in' } },
     }))
 
-    await import('./dal')
+    await import('./session')
 
-    expect(cacheFn).toHaveBeenCalledTimes(1)
+    expect(cacheFn).toHaveBeenCalledTimes(2)
     expect(cacheFn).toHaveBeenCalledWith(expect.any(Function))
+  })
+})
+
+describe('getSession', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    mockHeaders.delete('next-url')
+    mockHeaders.delete('referer')
+    vi.mocked(headers).mockResolvedValue(mockHeaders)
+  })
+
+  it('returns session for authenticated user', async () => {
+    const mockSession = createMockSession('user-123')
+    vi.mocked(auth.api.getSession).mockResolvedValue(mockSession)
+
+    const session = await getSession()
+
+    expect(session).toBe(mockSession)
+    expect(auth.api.getSession).toHaveBeenCalledWith({ headers: mockHeaders })
+  })
+
+  it('returns null for unauthenticated user', async () => {
+    vi.mocked(auth.api.getSession).mockResolvedValue(null)
+
+    const session = await getSession()
+
+    expect(session).toBeNull()
+    expect(auth.api.getSession).toHaveBeenCalledWith({ headers: mockHeaders })
   })
 })
