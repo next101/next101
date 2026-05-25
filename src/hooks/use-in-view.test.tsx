@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { act, render } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useInView } from './use-in-view'
 
@@ -69,7 +69,7 @@ describe('useInView', () => {
       time: Date.now(),
     } as IntersectionObserverEntry
 
-    observerCallback?.([mockEntry])
+    act(() => observerCallback?.([mockEntry]))
 
     expect(getByTestId('test-div')).toHaveTextContent('in-view')
     expect(mockDisconnect).toHaveBeenCalled()
@@ -88,7 +88,7 @@ describe('useInView', () => {
       time: Date.now(),
     } as IntersectionObserverEntry
 
-    observerCallback?.([mockEntry])
+    act(() => observerCallback?.([mockEntry]))
 
     expect(getByTestId('test-div')).toHaveTextContent('not-in-view')
   })
