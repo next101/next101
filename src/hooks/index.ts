@@ -8,6 +8,7 @@ export {
   forgotPasswordSchema,
   useForgotPasswordForm,
 } from './use-forgot-password-form'
+export { useGitHubSignIn } from './use-github-sign-in'
 export { useInView } from './use-in-view'
 export {
   type ResetPasswordFormValues,

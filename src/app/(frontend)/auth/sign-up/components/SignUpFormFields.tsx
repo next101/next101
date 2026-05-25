@@ -1,7 +1,16 @@
 'use client'
 
-import { Box, Button, PasswordInput, Stack, TextInput } from '@mantine/core'
+import {
+  Box,
+  Button,
+  Divider,
+  PasswordInput,
+  Stack,
+  Text,
+  TextInput,
+} from '@mantine/core'
 import { sizes } from '@/app/(frontend)/design'
+import { GitHubSignIn } from '@/components/common'
 import type { SignUpFormValues } from '@/hooks'
 
 interface SignUpFormFieldsProps {
@@ -14,6 +23,15 @@ interface SignUpFormFieldsProps {
 export function SignUpFormFields({ form, isLoading }: SignUpFormFieldsProps) {
   return (
     <Stack gap="sm">
+      <GitHubSignIn />
+      <Divider
+        label={
+          <Text c="dimmed" size="xs">
+            or continue with
+          </Text>
+        }
+      />
+
       <TextInput
         label="Name"
         placeholder="Your name"

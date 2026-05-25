@@ -17,6 +17,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.13.0",
     "@mantine/carousel": "^9.0.1",
     "@mantine/charts": "^9.0.1",
     "@mantine/code-highlight": "^9.0.1",

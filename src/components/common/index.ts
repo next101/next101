@@ -1,5 +1,6 @@
 export { AuthCard } from './AuthCard'
 export { AuthHeader } from './AuthHeader'
+export { GitHubSignIn } from './GitHubSignIn'
 export { Logo, LogoWithTitle } from './Logo'
 export { PageTitle } from './PageTitle'
 export { IconBrandPayload } from './PayloadIcon'

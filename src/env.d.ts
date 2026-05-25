@@ -14,6 +14,11 @@ declare global {
       // Resend
       RESEND_API_KEY: string
       RESEND_FROM_EMAIL: string
+
+      /// Social sign in
+      // GitHub
+      GITHUB_CLIENT_ID: string
+      GITHUB_CLIENT_SECRET: string
     }
   }
 }
