@@ -1,12 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { siteLinks } from '@/config'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { SignInForm } from './SignInForm'
 
 describe(SignInForm, () => {
   it('renders sign in form with all fields', () => {
-    render(<SignInForm />, { wrapper: MantineWrapper })
+    renderMantine(<SignInForm />)
 
     expect(screen.getByPlaceholderText('you@example.com')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('Your password')).toBeInTheDocument()
@@ -14,7 +14,7 @@ describe(SignInForm, () => {
   })
 
   it('renders forgot password link', () => {
-    render(<SignInForm />, { wrapper: MantineWrapper })
+    renderMantine(<SignInForm />)
 
     expect(
       screen.getByRole('link', { name: 'Forgot password?' })
@@ -22,7 +22,7 @@ describe(SignInForm, () => {
   })
 
   it('renders form with required attributes', () => {
-    render(<SignInForm />, { wrapper: MantineWrapper })
+    renderMantine(<SignInForm />)
 
     expect(screen.getByPlaceholderText('you@example.com')).toBeRequired()
     expect(screen.getByPlaceholderText('Your password')).toBeRequired()
@@ -39,7 +39,7 @@ describe(SignInForm, () => {
       push: vi.fn(),
     })
 
-    render(<SignInForm onSuccess={onSuccess} />, { wrapper: MantineWrapper })
+    renderMantine(<SignInForm onSuccess={onSuccess} />)
 
     expect(onSuccess).toBeDefined()
   })

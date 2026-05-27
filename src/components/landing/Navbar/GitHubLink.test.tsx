@@ -1,6 +1,6 @@
-import { render, screen, within } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 
 import { GitHubLink } from './GitHubLink'
 
@@ -8,7 +8,7 @@ describe(GitHubLink, () => {
   let button: HTMLElement
 
   beforeEach(() => {
-    const { container } = render(<GitHubLink />, { wrapper: MantineWrapper })
+    const { container } = renderMantine(<GitHubLink />)
     button = within(container).getByLabelText('GitHub')
   })
 

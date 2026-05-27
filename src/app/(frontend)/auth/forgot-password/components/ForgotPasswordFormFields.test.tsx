@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { ForgotPasswordFormFields } from './ForgotPasswordFormFields'
 
 describe('ForgotPasswordFormFields', () => {
@@ -15,17 +15,17 @@ describe('ForgotPasswordFormFields', () => {
   }
 
   it('renders email input field', () => {
-    render(<ForgotPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(
+      <ForgotPasswordFormFields form={mockForm} isLoading={false} />
+    )
 
     expect(screen.getByPlaceholderText('you@example.com')).toBeInTheDocument()
   })
 
   it('renders submit button', () => {
-    render(<ForgotPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(
+      <ForgotPasswordFormFields form={mockForm} isLoading={false} />
+    )
 
     expect(
       screen.getByRole('button', { name: 'Send password reset email' })
@@ -33,9 +33,7 @@ describe('ForgotPasswordFormFields', () => {
   })
 
   it('shows loading state on button when isLoading is true', () => {
-    render(<ForgotPasswordFormFields form={mockForm} isLoading={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ForgotPasswordFormFields form={mockForm} isLoading={true} />)
 
     const button = screen.getByRole('button', {
       name: 'Send password reset email',
@@ -44,17 +42,15 @@ describe('ForgotPasswordFormFields', () => {
   })
 
   it('calls getInputProps for email field', () => {
-    render(<ForgotPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(
+      <ForgotPasswordFormFields form={mockForm} isLoading={false} />
+    )
 
     expect(mockGetInputProps).toHaveBeenCalledWith('email')
   })
 
   it('disables input when isLoading is true', () => {
-    render(<ForgotPasswordFormFields form={mockForm} isLoading={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ForgotPasswordFormFields form={mockForm} isLoading={true} />)
 
     const input = screen.getByPlaceholderText('you@example.com')
     expect(input).toBeDisabled()

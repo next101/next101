@@ -1,7 +1,7 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { siteLinks } from '@/config'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { SignInButton } from './SignInButton'
 
 describe('SignInButton', () => {
@@ -9,7 +9,7 @@ describe('SignInButton', () => {
   let link: HTMLAnchorElement | null
 
   beforeEach(() => {
-    const { container } = render(<SignInButton />, { wrapper: MantineWrapper })
+    const { container } = renderMantine(<SignInButton />)
     button = within(container).getByText('Sign in')
     link = button.closest('a')
   })

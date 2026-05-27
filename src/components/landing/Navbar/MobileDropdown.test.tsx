@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { MobileDropdown } from './MobileDropdown'
 
 describe('MobileDropdown', () => {
@@ -12,11 +12,8 @@ describe('MobileDropdown', () => {
   })
 
   it('renders NavLinks and Actions when opened', () => {
-    render(
-      <MobileDropdown opened={true} onClose={onClose} toggleRef={toggleRef} />,
-      {
-        wrapper: MantineWrapper,
-      }
+    renderMantine(
+      <MobileDropdown opened={true} onClose={onClose} toggleRef={toggleRef} />
     )
     expect(screen.getByText('Features')).toBeInTheDocument()
     expect(screen.getByText('Pricing')).toBeInTheDocument()
@@ -25,9 +22,8 @@ describe('MobileDropdown', () => {
   })
 
   it('renders divider when opened', () => {
-    const { container } = render(
-      <MobileDropdown opened={true} onClose={onClose} toggleRef={toggleRef} />,
-      { wrapper: MantineWrapper }
+    const { container } = renderMantine(
+      <MobileDropdown opened={true} onClose={onClose} toggleRef={toggleRef} />
     )
     const divider = container.querySelector('[role="separator"]')
     expect(divider).toBeInTheDocument()

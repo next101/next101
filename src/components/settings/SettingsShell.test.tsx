@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { SettingsNavLink, SettingsShell } from './SettingsShell'
 
 const mockUsePathname = vi.fn()
@@ -13,13 +13,12 @@ describe('SettingsNavLink', () => {
   it('renders a link with the given label and href', () => {
     mockUsePathname.mockReturnValue('/other')
 
-    render(
+    renderMantine(
       <SettingsNavLink
         href="/settings"
         label="Profile"
         icon={<span data-testid="user-icon" />}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     const link = screen.getByRole('link', { name: 'Profile' })
@@ -30,13 +29,12 @@ describe('SettingsNavLink', () => {
   it('marks the link as active when pathname matches href', () => {
     mockUsePathname.mockReturnValue('/settings')
 
-    render(
+    renderMantine(
       <SettingsNavLink
         href="/settings"
         label="Profile"
         icon={<span data-testid="user-icon" />}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     const link = screen.getByRole('link', { name: 'Profile' })
@@ -46,13 +44,12 @@ describe('SettingsNavLink', () => {
   it('does not mark the link as active when pathname differs', () => {
     mockUsePathname.mockReturnValue('/settings/account')
 
-    render(
+    renderMantine(
       <SettingsNavLink
         href="/settings"
         label="Profile"
         icon={<span data-testid="user-icon" />}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     const link = screen.getByRole('link', { name: 'Profile' })
@@ -64,11 +61,10 @@ describe('SettingsShell', () => {
   it('renders Settings title', () => {
     mockUsePathname.mockReturnValue('/settings')
 
-    render(
+    renderMantine(
       <SettingsShell>
         <div data-testid="content">Profile Content</div>
-      </SettingsShell>,
-      { wrapper: MantineWrapper }
+      </SettingsShell>
     )
 
     expect(screen.getByText('Settings')).toBeInTheDocument()
@@ -78,11 +74,10 @@ describe('SettingsShell', () => {
   it('renders navigation links', () => {
     mockUsePathname.mockReturnValue('/settings')
 
-    render(
+    renderMantine(
       <SettingsShell>
         <div>Content</div>
-      </SettingsShell>,
-      { wrapper: MantineWrapper }
+      </SettingsShell>
     )
 
     expect(screen.getByRole('link', { name: 'Profile' })).toBeInTheDocument()
@@ -92,11 +87,10 @@ describe('SettingsShell', () => {
   it('marks Profile as active on /settings', () => {
     mockUsePathname.mockReturnValue('/settings')
 
-    render(
+    renderMantine(
       <SettingsShell>
         <div>Content</div>
-      </SettingsShell>,
-      { wrapper: MantineWrapper }
+      </SettingsShell>
     )
 
     const profileLink = screen.getByRole('link', { name: 'Profile' })
@@ -107,11 +101,10 @@ describe('SettingsShell', () => {
   it('marks Account as active on /settings/account', () => {
     mockUsePathname.mockReturnValue('/settings/account')
 
-    render(
+    renderMantine(
       <SettingsShell>
         <div>Content</div>
-      </SettingsShell>,
-      { wrapper: MantineWrapper }
+      </SettingsShell>
     )
 
     const accountLink = screen.getByRole('link', { name: 'Account' })

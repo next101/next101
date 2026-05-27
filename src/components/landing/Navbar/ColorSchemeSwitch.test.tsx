@@ -1,17 +1,11 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { ColorSchemeSwitch } from './ColorSchemeSwitch'
 
 describe('ColorSchemeSwitch', () => {
   beforeEach(() => {
-    render(<ColorSchemeSwitch />, { wrapper: MantineWrapper })
+    renderMantine(<ColorSchemeSwitch />)
   })
 
   describe('target button', () => {

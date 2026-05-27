@@ -1,7 +1,7 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { authClient } from '@/lib/client'
-import { MantineWrapper, verifiedUser } from '@/test'
+import { renderMantine, verifiedUser } from '@/test'
 import { ProfileForm } from './ProfileForm'
 
 vi.mock('@/lib/client', () => ({
@@ -22,7 +22,7 @@ describe('ProfileForm', () => {
   })
 
   it('renders title and description', () => {
-    render(<ProfileForm user={verifiedUser} />, { wrapper: MantineWrapper })
+    renderMantine(<ProfileForm user={verifiedUser} />)
 
     expect(screen.getByText('Profile')).toBeInTheDocument()
     expect(
@@ -31,7 +31,7 @@ describe('ProfileForm', () => {
   })
 
   it('renders name input with initial value', () => {
-    render(<ProfileForm user={verifiedUser} />, { wrapper: MantineWrapper })
+    renderMantine(<ProfileForm user={verifiedUser} />)
 
     const nameInput = screen.getByPlaceholderText(
       'Your name'
@@ -40,7 +40,7 @@ describe('ProfileForm', () => {
   })
 
   it('renders email input as disabled', () => {
-    render(<ProfileForm user={verifiedUser} />, { wrapper: MantineWrapper })
+    renderMantine(<ProfileForm user={verifiedUser} />)
 
     const emailInput = screen.getByDisplayValue(
       verifiedUser.email
@@ -54,7 +54,7 @@ describe('ProfileForm', () => {
       error: null,
     } as never)
 
-    render(<ProfileForm user={verifiedUser} />, { wrapper: MantineWrapper })
+    renderMantine(<ProfileForm user={verifiedUser} />)
 
     const nameInput = screen.getByPlaceholderText('Your name')
     fireEvent.change(nameInput, { target: { value: 'Updated Name' } })
@@ -70,7 +70,7 @@ describe('ProfileForm', () => {
   })
 
   it('shows validation error for short name', async () => {
-    render(<ProfileForm user={verifiedUser} />, { wrapper: MantineWrapper })
+    renderMantine(<ProfileForm user={verifiedUser} />)
 
     const nameInput = screen.getByPlaceholderText('Your name')
     fireEvent.change(nameInput, { target: { value: 'A' } })

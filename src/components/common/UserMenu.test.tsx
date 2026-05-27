@@ -1,13 +1,7 @@
-import {
-  fireEvent,
-  getByTestId,
-  render,
-  waitFor,
-  within,
-} from '@testing-library/react'
+import { fireEvent, getByTestId, waitFor, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { siteLinks } from '@/config'
-import { MantineWrapper, verifiedUser } from '@/test'
+import { renderMantine, verifiedUser } from '@/test'
 import { UserMenu } from './UserMenu'
 
 const mockPush = vi.fn()
@@ -38,27 +32,23 @@ describe('UserMenu', () => {
 
   describe('avatar rendering', () => {
     it('renders avatar with image when user has image', () => {
-      const { container } = render(<UserMenu user={verifiedUser} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(<UserMenu user={verifiedUser} />)
       const avatarImage = container.querySelector('.mantine-Avatar-image')
       expect(avatarImage).toBeInTheDocument()
     })
 
     it('renders avatar with fallback when user has null image', () => {
       const userWithoutImage = { ...verifiedUser, image: null }
-      const { container } = render(<UserMenu user={userWithoutImage} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(<UserMenu user={userWithoutImage} />)
       const avatar = within(container).getByText('V')
       expect(avatar).toBeInTheDocument()
     })
 
     it('renders avatar with fallback when user image is undefined', () => {
       const userWithUndefinedImage = { ...verifiedUser, image: undefined }
-      const { container } = render(<UserMenu user={userWithUndefinedImage} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(
+        <UserMenu user={userWithUndefinedImage} />
+      )
       const avatar = within(container).getByText('V')
       expect(avatar).toBeInTheDocument()
     })
@@ -66,25 +56,19 @@ describe('UserMenu', () => {
 
   describe('Menu component', () => {
     it('renders Menu.Target with aria attributes', () => {
-      const { container } = render(<UserMenu user={verifiedUser} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(<UserMenu user={verifiedUser} />)
       const target = container.querySelector('[aria-haspopup="menu"]')
       expect(target).toBeInTheDocument()
     })
 
     it('renders Avatar component with correct root class', () => {
-      const { container } = render(<UserMenu user={verifiedUser} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(<UserMenu user={verifiedUser} />)
       const avatarRoot = getByTestId(container, 'user-avatar')
       expect(avatarRoot).toBeInTheDocument()
     })
 
     it('renders user avatar with pointer cursor', () => {
-      const { container } = render(<UserMenu user={verifiedUser} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(<UserMenu user={verifiedUser} />)
       const avatar = getByTestId(container, 'user-avatar')
       expect(avatar).toHaveStyle({ cursor: 'pointer' })
     })
@@ -92,9 +76,7 @@ describe('UserMenu', () => {
 
   describe('menu interactions', () => {
     it('opens menu and renders dropdown items', async () => {
-      const { container } = render(<UserMenu user={verifiedUser} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
       // Click on the avatar to open the menu
       const avatar = getByTestId(container, 'user-avatar')
@@ -116,9 +98,7 @@ describe('UserMenu', () => {
 
     describe('Notes menu item', () => {
       it('renders with IconNotes', async () => {
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         fireEvent.click(avatar as Element)
@@ -133,9 +113,7 @@ describe('UserMenu', () => {
       })
 
       it('navigates to notes when clicked', async () => {
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         expect(avatar).toBeInTheDocument()
@@ -151,9 +129,7 @@ describe('UserMenu', () => {
 
     describe('Dashboard menu item', () => {
       it('renders with IconDashboard', async () => {
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         fireEvent.click(avatar as Element)
@@ -168,9 +144,7 @@ describe('UserMenu', () => {
       })
 
       it('navigates to dashboard when clicked', async () => {
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         expect(avatar).toBeInTheDocument()
@@ -186,9 +160,7 @@ describe('UserMenu', () => {
 
     describe('Settings menu item', () => {
       it('renders with IconSettings', async () => {
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         fireEvent.click(avatar as Element)
@@ -203,9 +175,7 @@ describe('UserMenu', () => {
       })
 
       it('navigates to settings when clicked', async () => {
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         expect(avatar).toBeInTheDocument()
@@ -221,9 +191,7 @@ describe('UserMenu', () => {
 
     describe('Sign out menu item', () => {
       it('renders with IconLogout', async () => {
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         fireEvent.click(avatar as Element)
@@ -241,9 +209,7 @@ describe('UserMenu', () => {
         const { authClient } = await import('@/lib/client')
         vi.mocked(authClient.signOut).mockResolvedValueOnce({} as never)
 
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         expect(avatar).toBeInTheDocument()
@@ -268,9 +234,7 @@ describe('UserMenu', () => {
         const { authClient } = await import('@/lib/client')
         vi.mocked(authClient.signOut).mockRejectedValueOnce(new Error('Failed'))
 
-        const { container } = render(<UserMenu user={verifiedUser} />, {
-          wrapper: MantineWrapper,
-        })
+        const { container } = renderMantine(<UserMenu user={verifiedUser} />)
 
         const avatar = getByTestId(container, 'user-avatar')
         fireEvent.click(avatar as Element)

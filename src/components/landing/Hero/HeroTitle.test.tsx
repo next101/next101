@@ -1,14 +1,14 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { siteConfig } from '@/config'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { HeroTitle } from './HeroTitle'
 
 describe(HeroTitle, () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    container = render(<HeroTitle />, { wrapper: MantineWrapper }).container
+    container = renderMantine(<HeroTitle />).container
   })
 
   it('renders main title', () => {

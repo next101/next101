@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper, verifiedUser } from '@/test'
+import { renderMantine, verifiedUser } from '@/test'
 import { ProfileFormFields } from './ProfileFormFields'
 
 describe('ProfileFormFields', () => {
@@ -15,13 +15,12 @@ describe('ProfileFormFields', () => {
   }
 
   it('renders title and description', () => {
-    render(
+    renderMantine(
       <ProfileFormFields
         form={mockForm}
         isLoading={false}
         email={verifiedUser.email}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     expect(screen.getByText('Profile')).toBeInTheDocument()
@@ -31,26 +30,24 @@ describe('ProfileFormFields', () => {
   })
 
   it('renders name input field', () => {
-    render(
+    renderMantine(
       <ProfileFormFields
         form={mockForm}
         isLoading={false}
         email={verifiedUser.email}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     expect(screen.getByPlaceholderText('Your name')).toBeInTheDocument()
   })
 
   it('renders email input as disabled', () => {
-    render(
+    renderMantine(
       <ProfileFormFields
         form={mockForm}
         isLoading={false}
         email={verifiedUser.email}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     const emailInput = screen.getByDisplayValue(
@@ -61,13 +58,12 @@ describe('ProfileFormFields', () => {
   })
 
   it('renders update profile button', () => {
-    render(
+    renderMantine(
       <ProfileFormFields
         form={mockForm}
         isLoading={false}
         email={verifiedUser.email}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     expect(
@@ -76,13 +72,12 @@ describe('ProfileFormFields', () => {
   })
 
   it('shows loading state on button when isLoading is true', () => {
-    render(
+    renderMantine(
       <ProfileFormFields
         form={mockForm}
         isLoading={true}
         email={verifiedUser.email}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     const button = screen.getByRole('button', { name: 'Update profile' })
@@ -90,13 +85,12 @@ describe('ProfileFormFields', () => {
   })
 
   it('calls getInputProps for name field', () => {
-    render(
+    renderMantine(
       <ProfileFormFields
         form={mockForm}
         isLoading={false}
         email={verifiedUser.email}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
 
     expect(mockGetInputProps).toHaveBeenCalledWith('name')

@@ -1,6 +1,6 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { ResetPasswordForm } from './ResetPasswordForm'
 
 vi.mock('next/navigation', () => ({
@@ -26,13 +26,13 @@ vi.mock('@/lib/client', () => ({
 
 describe('ResetPasswordForm', () => {
   it('renders password inputs', () => {
-    render(<ResetPasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<ResetPasswordForm />)
     expect(screen.getByLabelText(/new password/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument()
   })
 
   it('renders submit button', () => {
-    render(<ResetPasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<ResetPasswordForm />)
     expect(
       screen.getByRole('button', { name: 'Reset password' })
     ).toBeInTheDocument()
@@ -42,7 +42,7 @@ describe('ResetPasswordForm', () => {
     const { authClient } = await import('@/lib/client')
     vi.mocked(authClient.resetPassword).mockResolvedValueOnce({} as never)
 
-    render(<ResetPasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<ResetPasswordForm />)
 
     const passwordInput = screen.getByLabelText(/new password/i)
     const confirmInput = screen.getByLabelText(/confirm password/i)
@@ -60,7 +60,7 @@ describe('ResetPasswordForm', () => {
   })
 
   it('shows validation error when passwords do not match', async () => {
-    render(<ResetPasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<ResetPasswordForm />)
 
     const passwordInput = screen.getByLabelText(/new password/i)
     const confirmInput = screen.getByLabelText(/confirm password/i)

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { MantineWrapper, renderMantine } from '@/test'
 import {
   BetterAuthVisual,
   BlogVisual,
@@ -56,9 +56,7 @@ describe('FeatureVisuals', () => {
 
   describe('DarkModeVisual interactions', () => {
     it('toggles color scheme when clicked', async () => {
-      render(<DarkModeVisual />, {
-        wrapper: MantineWrapper,
-      })
+      renderMantine(<DarkModeVisual />)
 
       const switchInput = screen.getByRole('switch')
       const initialChecked = switchInput.getAttribute('data-checked')

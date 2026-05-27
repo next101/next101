@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { SignUpForm } from './SignUpForm'
 
 describe(SignUpForm, () => {
   it('renders sign up form with all fields', () => {
-    render(<SignUpForm />, { wrapper: MantineWrapper })
+    renderMantine(<SignUpForm />)
 
     expect(screen.getByPlaceholderText('Your name')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('you@example.com')).toBeInTheDocument()
@@ -16,7 +16,7 @@ describe(SignUpForm, () => {
   })
 
   it('renders form with required attributes', () => {
-    render(<SignUpForm />, { wrapper: MantineWrapper })
+    renderMantine(<SignUpForm />)
 
     expect(screen.getByPlaceholderText('Your name')).toBeRequired()
     expect(screen.getByPlaceholderText('you@example.com')).toBeRequired()
@@ -34,7 +34,7 @@ describe(SignUpForm, () => {
       push: vi.fn(),
     })
 
-    render(<SignUpForm onSuccess={onSuccess} />, { wrapper: MantineWrapper })
+    renderMantine(<SignUpForm onSuccess={onSuccess} />)
 
     expect(onSuccess).toBeDefined()
   })

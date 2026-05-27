@@ -1,15 +1,13 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { Actions } from './Actions'
 
 describe('Actions', () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    const result = render(<Actions mode="desktop" />, {
-      wrapper: MantineWrapper,
-    })
+    const result = renderMantine(<Actions mode="desktop" />)
     container = result.container
   })
 

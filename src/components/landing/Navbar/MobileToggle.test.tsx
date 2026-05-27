@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { MobileToggle } from './MobileToggle'
 
 describe('MobileToggle', () => {
@@ -11,32 +11,24 @@ describe('MobileToggle', () => {
   })
 
   it('renders toggle button', () => {
-    render(<MobileToggle opened={false} onToggle={onToggle} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<MobileToggle opened={false} onToggle={onToggle} />)
     expect(screen.getByLabelText('Toggle navigation')).toBeInTheDocument()
   })
 
   it('shows chevron down icon when closed', () => {
-    render(<MobileToggle opened={false} onToggle={onToggle} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<MobileToggle opened={false} onToggle={onToggle} />)
     expect(screen.getByTestId('icon-chevron-down')).toBeInTheDocument()
     expect(screen.queryByTestId('icon-chevron-up')).not.toBeInTheDocument()
   })
 
   it('shows chevron up icon when opened', () => {
-    render(<MobileToggle opened={true} onToggle={onToggle} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<MobileToggle opened={true} onToggle={onToggle} />)
     expect(screen.getByTestId('icon-chevron-up')).toBeInTheDocument()
     expect(screen.queryByTestId('icon-chevron-down')).not.toBeInTheDocument()
   })
 
   it('calls onToggle when clicked', () => {
-    render(<MobileToggle opened={false} onToggle={onToggle} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<MobileToggle opened={false} onToggle={onToggle} />)
     screen.getByLabelText('Toggle navigation').click()
     expect(onToggle).toHaveBeenCalledTimes(1)
   })

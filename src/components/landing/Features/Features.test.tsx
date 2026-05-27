@@ -1,6 +1,6 @@
 import { render, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { MantineWrapper, renderMantine } from '@/test'
 import { Features } from './Features'
 import { featuresData } from './features.data'
 
@@ -8,7 +8,7 @@ describe(Features, () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    const result = render(<Features />, { wrapper: MantineWrapper })
+    const result = renderMantine(<Features />)
     container = result.container
   })
 
@@ -38,11 +38,7 @@ describe(Features, () => {
   it('renders all visual elements', () => {
     for (const feature of featuresData) {
       const Visual = feature.visual
-      const { container: visualContainer } = render(
-        <MantineWrapper>
-          <Visual />
-        </MantineWrapper>
-      )
+      const { container: visualContainer } = renderMantine(<Visual />)
       expect(visualContainer.firstChild).toBeInTheDocument()
     }
   })

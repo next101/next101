@@ -1,14 +1,14 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { siteLinks } from '@/config'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { HeroCTA } from './HeroCTA'
 
 describe(HeroCTA, () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    container = render(<HeroCTA />, { wrapper: MantineWrapper }).container
+    container = renderMantine(<HeroCTA />).container
   })
 
   it('renders Get Started button with correct href', () => {

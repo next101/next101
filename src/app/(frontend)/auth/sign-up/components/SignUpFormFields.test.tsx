@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { SignUpFormFields } from './SignUpFormFields'
 
 describe('SignUpFormFields', () => {
@@ -15,33 +15,25 @@ describe('SignUpFormFields', () => {
   }
 
   it('renders name input field', () => {
-    render(<SignUpFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignUpFormFields form={mockForm} isLoading={false} />)
 
     expect(screen.getByPlaceholderText('Your name')).toBeInTheDocument()
   })
 
   it('renders email input field', () => {
-    render(<SignUpFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignUpFormFields form={mockForm} isLoading={false} />)
 
     expect(screen.getByPlaceholderText('you@example.com')).toBeInTheDocument()
   })
 
   it('renders password input field', () => {
-    render(<SignUpFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignUpFormFields form={mockForm} isLoading={false} />)
 
     expect(screen.getByPlaceholderText('Your password')).toBeInTheDocument()
   })
 
   it('renders Create an account button', () => {
-    render(<SignUpFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignUpFormFields form={mockForm} isLoading={false} />)
 
     expect(
       screen.getByRole('button', { name: 'Create an account' })
@@ -49,18 +41,14 @@ describe('SignUpFormFields', () => {
   })
 
   it('shows loading state on button when isLoading is true', () => {
-    render(<SignUpFormFields form={mockForm} isLoading={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignUpFormFields form={mockForm} isLoading={true} />)
 
     const button = screen.getByRole('button', { name: 'Create an account' })
     expect(button).toBeDisabled()
   })
 
   it('calls getInputProps for all form fields', () => {
-    render(<SignUpFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignUpFormFields form={mockForm} isLoading={false} />)
 
     expect(mockGetInputProps).toHaveBeenCalledWith('name')
     expect(mockGetInputProps).toHaveBeenCalledWith('email')
@@ -68,9 +56,8 @@ describe('SignUpFormFields', () => {
   })
 
   it('renders form with correct structure', () => {
-    const { container } = render(
-      <SignUpFormFields form={mockForm} isLoading={false} />,
-      { wrapper: MantineWrapper }
+    const { container } = renderMantine(
+      <SignUpFormFields form={mockForm} isLoading={false} />
     )
 
     const stack = container.querySelector('.mantine-Stack-root')

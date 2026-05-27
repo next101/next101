@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { ResetPasswordFormFields } from './ResetPasswordFormFields'
 
 describe('ResetPasswordFormFields', () => {
@@ -15,9 +15,7 @@ describe('ResetPasswordFormFields', () => {
   }
 
   it('renders password input field', () => {
-    render(<ResetPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ResetPasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(
       screen.getByPlaceholderText('Enter your new password')
@@ -25,9 +23,7 @@ describe('ResetPasswordFormFields', () => {
   })
 
   it('renders confirm password input field', () => {
-    render(<ResetPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ResetPasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(
       screen.getByPlaceholderText('Confirm your new password')
@@ -35,9 +31,7 @@ describe('ResetPasswordFormFields', () => {
   })
 
   it('renders submit button', () => {
-    render(<ResetPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ResetPasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(
       screen.getByRole('button', { name: 'Reset password' })
@@ -45,34 +39,26 @@ describe('ResetPasswordFormFields', () => {
   })
 
   it('shows loading state on button when isLoading is true', () => {
-    render(<ResetPasswordFormFields form={mockForm} isLoading={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ResetPasswordFormFields form={mockForm} isLoading={true} />)
 
     const button = screen.getByRole('button', { name: 'Reset password' })
     expect(button).toBeDisabled()
   })
 
   it('calls getInputProps for password field', () => {
-    render(<ResetPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ResetPasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(mockGetInputProps).toHaveBeenCalledWith('password')
   })
 
   it('calls getInputProps for confirmPassword field', () => {
-    render(<ResetPasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ResetPasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(mockGetInputProps).toHaveBeenCalledWith('confirmPassword')
   })
 
   it('disables inputs when isLoading is true', () => {
-    render(<ResetPasswordFormFields form={mockForm} isLoading={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<ResetPasswordFormFields form={mockForm} isLoading={true} />)
 
     const passwordInput = screen.getByPlaceholderText('Enter your new password')
     const confirmPasswordInput = screen.getByPlaceholderText(

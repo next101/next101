@@ -1,6 +1,6 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { Navbar } from './Navbar'
 
 describe('Navbar', () => {
@@ -8,7 +8,7 @@ describe('Navbar', () => {
     let container: HTMLElement
 
     beforeEach(() => {
-      const result = render(<Navbar landing />, { wrapper: MantineWrapper })
+      const result = renderMantine(<Navbar landing />)
       container = result.container
     })
 
@@ -39,7 +39,7 @@ describe('Navbar', () => {
 
   describe('non-landing mode', () => {
     it('renders logo with title', () => {
-      const { container } = render(<Navbar />, { wrapper: MantineWrapper })
+      const { container } = renderMantine(<Navbar />)
       expect(within(container).getByText('Starfold')).toBeInTheDocument()
     })
 
@@ -52,14 +52,12 @@ describe('Navbar', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       }
-      const { container } = render(<Navbar user={user} />, {
-        wrapper: MantineWrapper,
-      })
+      const { container } = renderMantine(<Navbar user={user} />)
       expect(within(container).getByTestId('user-avatar')).toBeInTheDocument()
     })
 
     it('does not render nav links', () => {
-      const { container } = render(<Navbar />, { wrapper: MantineWrapper })
+      const { container } = renderMantine(<Navbar />)
       expect(within(container).queryByText('Features')).not.toBeInTheDocument()
       expect(within(container).queryByText('Pricing')).not.toBeInTheDocument()
       expect(within(container).queryByText('FAQ')).not.toBeInTheDocument()

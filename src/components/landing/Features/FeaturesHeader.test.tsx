@@ -1,13 +1,11 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { FeaturesHeader } from './FeaturesHeader'
 
 describe(FeaturesHeader, () => {
   it('renders the section title', () => {
-    const { container } = render(<FeaturesHeader />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<FeaturesHeader />)
 
     expect(
       within(container).getByText(/From zero to production in minutes/i)
@@ -15,9 +13,7 @@ describe(FeaturesHeader, () => {
   })
 
   it('renders the section subtitle', () => {
-    const { container } = render(<FeaturesHeader />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<FeaturesHeader />)
 
     expect(
       within(container).getByText(/A carefully curated stack of modern tools/i)
@@ -25,9 +21,7 @@ describe(FeaturesHeader, () => {
   })
 
   it('renders as an h2 element', () => {
-    const { container } = render(<FeaturesHeader />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<FeaturesHeader />)
 
     const heading = container.querySelector('h2')
     expect(heading).toBeInTheDocument()

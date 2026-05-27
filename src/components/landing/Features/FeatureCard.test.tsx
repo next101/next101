@@ -1,15 +1,15 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { FeatureCard } from './FeatureCard'
 import { featuresData } from './features.data'
 
 describe(FeatureCard, () => {
   it('applies hover styles on mouse enter', () => {
     const feature = featuresData[0]
-    const { container } = render(<FeatureCard feature={feature} index={0} />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(
+      <FeatureCard feature={feature} index={0} />
+    )
 
     const card = container.querySelector('.mantine-Card-root') as HTMLElement
     expect(card).toBeInTheDocument()
@@ -20,9 +20,9 @@ describe(FeatureCard, () => {
 
   it('restores styles on mouse leave', () => {
     const feature = featuresData[0]
-    const { container } = render(<FeatureCard feature={feature} index={0} />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(
+      <FeatureCard feature={feature} index={0} />
+    )
 
     const card = container.querySelector('.mantine-Card-root') as HTMLElement
     expect(card).toBeInTheDocument()

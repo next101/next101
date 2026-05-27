@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { TipTapEditor } from './TipTapEditor'
 
 const mockEditor = {
@@ -67,9 +67,7 @@ describe('TipTapEditor', () => {
   it('renders fallback when editor is not ready', () => {
     vi.mocked(useEditor).mockReturnValue(null)
 
-    render(<TipTapEditor content="Initial content" onChange={vi.fn()} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<TipTapEditor content="Initial content" onChange={vi.fn()} />)
 
     expect(screen.getByText('Initial content')).toBeInTheDocument()
   })
@@ -77,9 +75,7 @@ describe('TipTapEditor', () => {
   it('renders loading text when editor is not ready and content is empty', () => {
     vi.mocked(useEditor).mockReturnValue(null)
 
-    render(<TipTapEditor content="" onChange={vi.fn()} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<TipTapEditor content="" onChange={vi.fn()} />)
 
     expect(screen.getByText('Loading editor...')).toBeInTheDocument()
   })
@@ -89,9 +85,7 @@ describe('TipTapEditor', () => {
       mockEditor as unknown as ReturnType<typeof useEditor>
     )
 
-    render(<TipTapEditor content="<p>Hello</p>" onChange={vi.fn()} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<TipTapEditor content="<p>Hello</p>" onChange={vi.fn()} />)
 
     expect(screen.getByRole('textbox')).toBeInTheDocument()
   })
@@ -110,9 +104,7 @@ describe('TipTapEditor', () => {
       }
     )
 
-    render(<TipTapEditor content="<p>Test</p>" onChange={onChange} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<TipTapEditor content="<p>Test</p>" onChange={onChange} />)
 
     expect(onChange).toHaveBeenCalledWith('<p>Updated content</p>')
   })

@@ -1,15 +1,13 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { NAV_ITEMS, NavLinks } from './NavLinks'
 
 describe('NavLinks', () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    const result = render(<NavLinks mode="desktop" />, {
-      wrapper: MantineWrapper,
-    })
+    const result = renderMantine(<NavLinks mode="desktop" />)
     container = result.container
   })
 

@@ -1,15 +1,13 @@
-import { render, within } from '@testing-library/react'
+import { within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { Logo, LogoWithTitle } from './Logo'
 
 describe('Logo', () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    const result = render(<Logo />, {
-      wrapper: MantineWrapper,
-    })
+    const result = renderMantine(<Logo />)
     container = result.container
   })
 
@@ -23,9 +21,7 @@ describe('LogoWithTitle', () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    const result = render(<LogoWithTitle />, {
-      wrapper: MantineWrapper,
-    })
+    const result = renderMantine(<LogoWithTitle />)
     container = result.container
   })
 
@@ -45,11 +41,8 @@ describe('LogoWithTitle', () => {
   })
 
   it('applies custom width and height to logo', () => {
-    const { container: customContainer } = render(
-      <LogoWithTitle width={100} height={50} />,
-      {
-        wrapper: MantineWrapper,
-      }
+    const { container: customContainer } = renderMantine(
+      <LogoWithTitle width={100} height={50} />
     )
     const img = within(customContainer).getByAltText('Starfold')
     expect(img).toHaveAttribute('width', '100')

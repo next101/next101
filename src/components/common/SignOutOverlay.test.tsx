@@ -1,44 +1,34 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { SignOutOverlay } from './SignOutOverlay'
 
 describe('SignOutOverlay', () => {
   it('renders nothing when visible is false', () => {
-    render(<SignOutOverlay visible={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignOutOverlay visible={false} />)
     // MantineWrapper adds style tags, so check for overlay-specific content
     expect(screen.queryByText('Signing out...')).not.toBeInTheDocument()
   })
 
   it('renders overlay when visible is true', () => {
-    render(<SignOutOverlay visible={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignOutOverlay visible={true} />)
     expect(screen.getByText('Signing out...')).toBeInTheDocument()
   })
 
   it('renders Logo component', () => {
-    render(<SignOutOverlay visible={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignOutOverlay visible={true} />)
     const logo = screen.getByAltText('Starfold')
     expect(logo).toBeInTheDocument()
   })
 
   it('renders Loader component', () => {
-    render(<SignOutOverlay visible={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignOutOverlay visible={true} />)
     const loader = document.querySelector('.mantine-Loader-root')
     expect(loader).toBeInTheDocument()
   })
 
   it('hides overlay when visible changes to false', () => {
-    const { rerender } = render(<SignOutOverlay visible={true} />, {
-      wrapper: MantineWrapper,
-    })
+    const { rerender } = renderMantine(<SignOutOverlay visible={true} />)
 
     expect(screen.getByText('Signing out...')).toBeInTheDocument()
 
@@ -50,9 +40,7 @@ describe('SignOutOverlay', () => {
   })
 
   it('has fixed positioning', () => {
-    render(<SignOutOverlay visible={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignOutOverlay visible={true} />)
 
     const center = document.querySelector('.mantine-Center-root')
     expect(center).toBeInTheDocument()
@@ -61,9 +49,7 @@ describe('SignOutOverlay', () => {
   })
 
   it('has centered content layout', () => {
-    render(<SignOutOverlay visible={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<SignOutOverlay visible={true} />)
 
     const stack = document.querySelector('.mantine-Stack-root')
     expect(stack).toBeInTheDocument()

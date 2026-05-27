@@ -1,6 +1,6 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { ForgotPasswordForm } from './ForgotPasswordForm'
 
 vi.mock('@mantine/notifications', () => ({
@@ -22,12 +22,12 @@ vi.mock('@/lib/client', () => ({
 
 describe('ForgotPasswordForm', () => {
   it('renders email input', () => {
-    render(<ForgotPasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<ForgotPasswordForm />)
     expect(screen.getByRole('textbox', { name: /email/i })).toBeInTheDocument()
   })
 
   it('renders submit button', () => {
-    render(<ForgotPasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<ForgotPasswordForm />)
     expect(
       screen.getByRole('button', { name: 'Send password reset email' })
     ).toBeInTheDocument()
@@ -39,7 +39,7 @@ describe('ForgotPasswordForm', () => {
       {} as never
     )
 
-    render(<ForgotPasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<ForgotPasswordForm />)
 
     const emailInput = screen.getByRole('textbox', { name: /email/i })
     const submitButton = screen.getByRole('button', {

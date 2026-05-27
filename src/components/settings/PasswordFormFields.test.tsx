@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { PasswordFormFields } from './PasswordFormFields'
 
 describe('PasswordFormFields', () => {
@@ -15,9 +15,7 @@ describe('PasswordFormFields', () => {
   }
 
   it('renders title and description', () => {
-    render(<PasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<PasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(screen.getByText('Account')).toBeInTheDocument()
     expect(
@@ -26,9 +24,7 @@ describe('PasswordFormFields', () => {
   })
 
   it('renders all password input fields', () => {
-    render(<PasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<PasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(
       screen.getByPlaceholderText('Your current password')
@@ -40,9 +36,7 @@ describe('PasswordFormFields', () => {
   })
 
   it('renders change password button', () => {
-    render(<PasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<PasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(
       screen.getByRole('button', { name: 'Change password' })
@@ -50,18 +44,14 @@ describe('PasswordFormFields', () => {
   })
 
   it('shows loading state on button when isLoading is true', () => {
-    render(<PasswordFormFields form={mockForm} isLoading={true} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<PasswordFormFields form={mockForm} isLoading={true} />)
 
     const button = screen.getByRole('button', { name: 'Change password' })
     expect(button).toBeDisabled()
   })
 
   it('calls getInputProps for all password fields', () => {
-    render(<PasswordFormFields form={mockForm} isLoading={false} />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<PasswordFormFields form={mockForm} isLoading={false} />)
 
     expect(mockGetInputProps).toHaveBeenCalledWith('currentPassword')
     expect(mockGetInputProps).toHaveBeenCalledWith('newPassword')

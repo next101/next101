@@ -1,6 +1,5 @@
-import { render } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import {
   buildRgba,
   GlassBlobBackground,
@@ -14,9 +13,7 @@ describe(GlassBlobBackground, () => {
   let container: HTMLElement
 
   beforeEach(() => {
-    container = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    }).container
+    container = renderMantine(<GlassBlobBackground />).container
   })
 
   it('renders without crashing', () => {
@@ -41,9 +38,7 @@ describe(GlassBlobBackground, () => {
   })
 
   it('has aria-hidden on container', () => {
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
     const wrapper = container.querySelector('div')
     expect(wrapper).toHaveAttribute('aria-hidden', 'true')
   })
@@ -166,9 +161,7 @@ describe('GlassBlobBackground mobile', () => {
 
   it('renders mobile blobs when viewport is narrow', () => {
     Object.defineProperty(window, 'innerWidth', { value: 375, writable: true })
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
     const blobs = container.querySelectorAll(
       '[style*="will-change: border-radius"]'
     )
@@ -177,9 +170,7 @@ describe('GlassBlobBackground mobile', () => {
 
   it('renders desktop blobs when viewport is wide', () => {
     Object.defineProperty(window, 'innerWidth', { value: 1024, writable: true })
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
     const blobs = container.querySelectorAll(
       '[style*="will-change: border-radius"]'
     )
@@ -214,9 +205,7 @@ describe('GlassBlobBackground animation', () => {
   })
 
   it('animates blob border-radius over time', () => {
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
 
     const blobs = container.querySelectorAll(
       '[style*="will-change: border-radius"]'
@@ -232,9 +221,7 @@ describe('GlassBlobBackground animation', () => {
   })
 
   it('animates orb background colors over time', () => {
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
 
     const orbs = container.querySelectorAll('[style*="filter: blur(48px)"]')
     expect(orbs.length).toBe(3)
@@ -251,9 +238,7 @@ describe('GlassBlobBackground animation', () => {
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation((_cb) => 1)
     vi.spyOn(window, 'cancelAnimationFrame')
 
-    const { unmount } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { unmount } = renderMantine(<GlassBlobBackground />)
 
     vi.advanceTimersByTime(100)
     unmount()
@@ -265,9 +250,7 @@ describe('GlassBlobBackground animation', () => {
   it('updates refs when isMobile changes', () => {
     vi.spyOn(window, 'innerWidth', 'get').mockReturnValue(375)
 
-    const { rerender } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { rerender } = renderMantine(<GlassBlobBackground />)
 
     vi.advanceTimersByTime(100)
 
@@ -282,9 +265,7 @@ describe('GlassBlobBackground animation', () => {
   it('handles null blob element in animation loop', () => {
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation((_cb) => 1)
 
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
 
     const blobs = container.querySelectorAll(
       '[style*="will-change: border-radius"]'
@@ -298,9 +279,7 @@ describe('GlassBlobBackground animation', () => {
   it('handles null orb refs in animation', () => {
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation((_cb) => 1)
 
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
 
     vi.advanceTimersByTime(10000)
 
@@ -318,9 +297,7 @@ describe('GlassBlobBackground animation', () => {
     })
     vi.spyOn(window, 'cancelAnimationFrame')
 
-    render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<GlassBlobBackground />)
 
     if (rafCallback.current) {
       rafCallback.current(0)
@@ -340,9 +317,7 @@ describe('GlassBlobBackground animation', () => {
     })
     vi.spyOn(window, 'cancelAnimationFrame')
 
-    render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<GlassBlobBackground />)
 
     rafCallbacks.forEach((cb) => {
       cb(0)
@@ -350,9 +325,7 @@ describe('GlassBlobBackground animation', () => {
   })
 
   it('registers visibilitychange listener', () => {
-    render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    renderMantine(<GlassBlobBackground />)
 
     expect(document.addEventListener).toHaveBeenCalledWith(
       'visibilitychange',
@@ -361,9 +334,7 @@ describe('GlassBlobBackground animation', () => {
   })
 
   it('cleans up visibilitychange listener on unmount', () => {
-    const { unmount } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { unmount } = renderMantine(<GlassBlobBackground />)
 
     unmount()
 
@@ -389,9 +360,7 @@ describe('GlassBlobBackground backdropFilter support', () => {
   })
 
   it('applies backdropFilter when supported', () => {
-    const { container } = render(<GlassBlobBackground />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<GlassBlobBackground />)
 
     const blobs = container.querySelectorAll(
       '[style*="will-change: border-radius"]'

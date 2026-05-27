@@ -1,31 +1,29 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { AuthCard } from './AuthCard'
 
 describe('AuthCard', () => {
   it('renders header prop', () => {
-    render(
+    renderMantine(
       <AuthCard header={<div>Custom Header</div>}>
         <div>Form Content</div>
-      </AuthCard>,
-      { wrapper: MantineWrapper }
+      </AuthCard>
     )
     expect(screen.getByText('Custom Header')).toBeInTheDocument()
   })
 
   it('renders children', () => {
-    render(
+    renderMantine(
       <AuthCard header={<div>Header</div>}>
         <div>Form Content</div>
-      </AuthCard>,
-      { wrapper: MantineWrapper }
+      </AuthCard>
     )
     expect(screen.getByText('Form Content')).toBeInTheDocument()
   })
 
   it('renders with AuthHeader component', () => {
-    render(
+    renderMantine(
       <AuthCard
         header={
           <div>
@@ -34,15 +32,14 @@ describe('AuthCard', () => {
         }
       >
         <form>Login Form</form>
-      </AuthCard>,
-      { wrapper: MantineWrapper }
+      </AuthCard>
     )
     expect(screen.getByRole('heading', { name: 'Sign in' })).toBeInTheDocument()
     expect(screen.getByText('Login Form')).toBeInTheDocument()
   })
 
   it('renders with multiple header elements', () => {
-    render(
+    renderMantine(
       <AuthCard
         header={
           <div>
@@ -52,8 +49,7 @@ describe('AuthCard', () => {
         }
       >
         <div>Content</div>
-      </AuthCard>,
-      { wrapper: MantineWrapper }
+      </AuthCard>
     )
     expect(screen.getByRole('heading', { name: 'Title' })).toBeInTheDocument()
     expect(screen.getByText('Subtitle')).toBeInTheDocument()
@@ -61,14 +57,13 @@ describe('AuthCard', () => {
   })
 
   it('renders with form as children', () => {
-    render(
+    renderMantine(
       <AuthCard header={<div>Header</div>}>
         <form>
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
         </form>
-      </AuthCard>,
-      { wrapper: MantineWrapper }
+      </AuthCard>
     )
     expect(screen.getByPlaceholderText('Email')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('Password')).toBeInTheDocument()

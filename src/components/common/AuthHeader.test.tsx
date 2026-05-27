@@ -1,19 +1,18 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { siteLinks } from '@/config'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { AuthHeader } from './AuthHeader'
 
 describe('AuthHeader', () => {
   it('renders Logo component', () => {
-    render(
+    renderMantine(
       <AuthHeader
         title="Welcome back!"
         linkPrefix="New to Starfold?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
     const logo = screen.getByAltText('Starfold')
     expect(logo).toBeInTheDocument()
@@ -22,14 +21,13 @@ describe('AuthHeader', () => {
   })
 
   it('renders title', () => {
-    render(
+    renderMantine(
       <AuthHeader
         title="Welcome back!"
         linkPrefix="New to Starfold?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
     expect(
       screen.getByRole('heading', { name: 'Welcome back!' })
@@ -37,27 +35,25 @@ describe('AuthHeader', () => {
   })
 
   it('renders link prefix text', () => {
-    render(
+    renderMantine(
       <AuthHeader
         title="Welcome back!"
         linkPrefix="New to Starfold?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
     expect(screen.getByText('New to Starfold?')).toBeInTheDocument()
   })
 
   it('renders link with correct text and href', () => {
-    render(
+    renderMantine(
       <AuthHeader
         title="Create an account"
         linkPrefix="Already have an account?"
         linkText="Sign in"
         linkHref={siteLinks.auth.signIn}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
     const link = screen.getByRole('link', { name: 'Sign in' })
     expect(link).toBeInTheDocument()
@@ -65,14 +61,13 @@ describe('AuthHeader', () => {
   })
 
   it('renders with sign up variant', () => {
-    render(
+    renderMantine(
       <AuthHeader
         title="Create an account"
         linkPrefix="Already have an account?"
         linkText="Sign in"
         linkHref="/auth/sign-in"
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
     expect(
       screen.getByRole('heading', { name: 'Create an account' })
@@ -83,14 +78,13 @@ describe('AuthHeader', () => {
   })
 
   it('has centered layout', () => {
-    const { container } = render(
+    const { container } = renderMantine(
       <AuthHeader
         title="Welcome back!"
         linkPrefix="New to Starfold?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
     // The Stack component should be present with centered alignment
     const stack =
@@ -99,14 +93,13 @@ describe('AuthHeader', () => {
   })
 
   it('link has correct styling', () => {
-    render(
+    renderMantine(
       <AuthHeader
         title="Welcome back!"
         linkPrefix="New to Starfold?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
-      />,
-      { wrapper: MantineWrapper }
+      />
     )
     const link = screen.getByRole('link', { name: 'Create an account' })
     expect(link).toBeInTheDocument()

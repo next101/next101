@@ -1,6 +1,6 @@
-import { act, render, within } from '@testing-library/react'
+import { act, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { FeaturesGrid } from './FeaturesGrid'
 import { featuresData } from './features.data'
 
@@ -26,9 +26,7 @@ describe(FeaturesGrid, () => {
     vi.restoreAllMocks()
   })
   it('renders all feature cards', () => {
-    const { container } = render(<FeaturesGrid />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<FeaturesGrid />)
 
     for (const feature of featuresData) {
       expect(within(container).getByText(feature.title)).toBeInTheDocument()
@@ -36,18 +34,14 @@ describe(FeaturesGrid, () => {
   })
 
   it('renders the correct number of feature cards', () => {
-    const { container } = render(<FeaturesGrid />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<FeaturesGrid />)
 
     const cards = container.querySelectorAll('.mantine-Card-root')
     expect(cards).toHaveLength(featuresData.length)
   })
 
   it('renders all feature descriptions', () => {
-    const { container } = render(<FeaturesGrid />, {
-      wrapper: MantineWrapper,
-    })
+    const { container } = renderMantine(<FeaturesGrid />)
 
     for (const feature of featuresData) {
       expect(
@@ -57,9 +51,7 @@ describe(FeaturesGrid, () => {
   })
 
   it('renders with initial opacity 0', () => {
-    const { getAllByTestId } = render(<FeaturesGrid />, {
-      wrapper: MantineWrapper,
-    })
+    const { getAllByTestId } = renderMantine(<FeaturesGrid />)
 
     const animatedDivs = getAllByTestId('animated-feature-card')
     expect(animatedDivs.length).toBe(featuresData.length)
@@ -70,9 +62,7 @@ describe(FeaturesGrid, () => {
   })
 
   it('animates to visible when intersecting', () => {
-    const { getAllByTestId } = render(<FeaturesGrid />, {
-      wrapper: MantineWrapper,
-    })
+    const { getAllByTestId } = renderMantine(<FeaturesGrid />)
 
     const animatedDivs = getAllByTestId('animated-feature-card')
     const firstDiv = animatedDivs[0]

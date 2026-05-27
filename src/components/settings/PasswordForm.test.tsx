@@ -1,7 +1,7 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { authClient } from '@/lib/client'
-import { MantineWrapper } from '@/test'
+import { renderMantine } from '@/test'
 import { PasswordForm } from './PasswordForm'
 
 vi.mock('@/lib/client', () => ({
@@ -22,7 +22,7 @@ describe('PasswordForm', () => {
   })
 
   it('renders title and description', () => {
-    render(<PasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<PasswordForm />)
 
     expect(screen.getByText('Account')).toBeInTheDocument()
     expect(
@@ -31,7 +31,7 @@ describe('PasswordForm', () => {
   })
 
   it('renders all password inputs', () => {
-    render(<PasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<PasswordForm />)
 
     expect(
       screen.getByPlaceholderText('Your current password')
@@ -48,7 +48,7 @@ describe('PasswordForm', () => {
       error: null,
     } as never)
 
-    render(<PasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<PasswordForm />)
 
     fireEvent.change(screen.getByPlaceholderText('Your current password'), {
       target: { value: 'oldpassword123' },
@@ -71,7 +71,7 @@ describe('PasswordForm', () => {
   })
 
   it('shows validation error when passwords do not match', async () => {
-    render(<PasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<PasswordForm />)
 
     fireEvent.change(screen.getByPlaceholderText('Your current password'), {
       target: { value: 'oldpassword123' },
@@ -91,7 +91,7 @@ describe('PasswordForm', () => {
   })
 
   it('shows validation error for short new password', async () => {
-    render(<PasswordForm />, { wrapper: MantineWrapper })
+    renderMantine(<PasswordForm />)
 
     fireEvent.change(screen.getByPlaceholderText('Your current password'), {
       target: { value: 'oldpassword123' },
