@@ -9,6 +9,7 @@ export {
   useForgotPasswordForm,
 } from './use-forgot-password-form'
 export { useGitHubSignIn } from './use-github-sign-in'
+export { useGoogleSignIn } from './use-google-sign-in'
 export { useInView } from './use-in-view'
 export {
   type ResetPasswordFormValues,

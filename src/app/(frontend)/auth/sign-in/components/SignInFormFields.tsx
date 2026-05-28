@@ -4,15 +4,13 @@ import {
   Anchor,
   Box,
   Button,
-  Divider,
   PasswordInput,
   Stack,
-  Text,
   TextInput,
 } from '@mantine/core'
 import Link from 'next/link'
 import { sizes } from '@/app/(frontend)/design'
-import { GitHubSignIn } from '@/components/common'
+import { SocialSignIn } from '@/components/common'
 import { siteLinks } from '@/config'
 import type { SignInFormValues } from '@/hooks'
 
@@ -26,15 +24,7 @@ interface SignInFormFieldsProps {
 export function SignInFormFields({ form, isLoading }: SignInFormFieldsProps) {
   return (
     <Stack gap="sm">
-      <GitHubSignIn />
-      <Divider
-        label={
-          <Text c="dimmed" size="xs">
-            or continue with
-          </Text>
-        }
-      />
-
+      <SocialSignIn />
       <TextInput
         label="Email"
         placeholder="you@example.com"
