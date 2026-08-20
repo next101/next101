@@ -1,8 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createMockSession } from '@/test'
 
-vi.mock('server-only', () => ({}))
-
 vi.mock('next/headers', () => ({
   headers: vi.fn(),
 }))
@@ -106,7 +104,6 @@ describe('verifySession caching', () => {
       return { ...actual, cache: cacheFn }
     })
 
-    vi.doMock('server-only', () => ({}))
     vi.doMock('next/headers', () => ({ headers: vi.fn() }))
     vi.doMock('next/navigation', () => ({ redirect: vi.fn() }))
     vi.doMock('@/lib/auth', () => ({

@@ -1,8 +1,6 @@
 import type { Field, FieldHook } from 'payload'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-vi.mock('server-only', () => ({}))
-
 vi.mock('../lib/server/auth', () => ({
   auth: {
     api: {

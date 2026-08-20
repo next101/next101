@@ -14,9 +14,6 @@ Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
 })
 
-// Mock server-only for client-side tests
-vi.mock('server-only', () => ({}))
-
 // Mock next/navigation
 vi.mock('next/navigation', () => ({
   useRouter: () => ({

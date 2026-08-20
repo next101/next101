@@ -10,6 +10,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write --unsafe",
     "format": "biome format --write",
+    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
     "test": "vitest --run",
     "test:dom": "vitest --run --project=dom",
     "test:node": "vitest --run --project=node",
@@ -54,7 +55,6 @@
     "react-dom": "19.2.8",
     "recharts": "^3.10.1",
     "resend": "^6.20.0",
-    "server-only": "^0.0.1",
     "sharp": "^0.35.3",
     "zod": "^4.4.3"
   },
@@ -70,6 +70,7 @@
     "@types/react-dom": "^19.2.4",
     "@vitest/coverage-v8": "^4.1.11",
     "babel-plugin-react-compiler": "1.0.0",
+    "cross-env": "^10.1.0",
     "happy-dom": "^20.11.2",
     "postcss": "^8.5.26",
     "postcss-preset-mantine": "^1.18.0",
