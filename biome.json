@@ -14,7 +14,8 @@
       "!dist",
       "!build",
       "!**/importMap.js",
-      "!**/payload-types.ts"
+      "!**/payload-types.ts",
+      "!src/migrations"
     ]
   },
   "formatter": {
