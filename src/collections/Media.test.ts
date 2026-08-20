@@ -1,3 +1,4 @@
+import type { TextField } from 'payload'
 import { describe, expect, it } from 'vitest'
 import { Media } from './Media'
 
@@ -17,7 +18,7 @@ describe('Media collection', () => {
 
   it('has required alt field', () => {
     const altField = Media.fields?.find(
-      (field): field is { name: string; type: string; required: boolean } =>
+      (field): field is TextField =>
         typeof field === 'object' && 'name' in field && field.name === 'alt'
     )
     expect(altField).toBeDefined()

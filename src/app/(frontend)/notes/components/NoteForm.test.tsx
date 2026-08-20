@@ -50,7 +50,7 @@ describe('NoteForm', () => {
 
   it('renders edit form with note data', () => {
     const note = {
-      id: 'note-123',
+      id: 123,
       title: 'Test Note',
       content: 'Test content',
     }
@@ -72,7 +72,7 @@ describe('NoteForm', () => {
 
   it('has cancel link to note detail when editing', () => {
     const note = {
-      id: 'note-123',
+      id: 123,
       title: 'Test Note',
       content: 'Test content',
     }
@@ -80,7 +80,7 @@ describe('NoteForm', () => {
     renderMantine(<NoteForm action={mockAction} note={note} />)
 
     const cancelLink = screen.getByRole('link', { name: /cancel/i })
-    expect(cancelLink).toHaveAttribute('href', '/notes/note-123')
+    expect(cancelLink).toHaveAttribute('href', '/notes/123')
   })
 
   it('submits form with data', async () => {

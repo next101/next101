@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react'
+import type { Mock } from 'vitest'
 import { describe, expect, it, vi } from 'vitest'
 import { renderMantine } from '@/test'
 import { TipTapEditor } from './TipTapEditor'
@@ -63,9 +64,13 @@ vi.mock('@tiptap/react', () => ({
 
 import { useEditor } from '@tiptap/react'
 
+const mockUseEditor = vi.mocked(useEditor) as unknown as Mock<
+  (options?: Record<string, unknown>) => unknown
+>
+
 describe('TipTapEditor', () => {
   it('renders fallback when editor is not ready', () => {
-    vi.mocked(useEditor).mockReturnValue(null)
+    mockUseEditor.mockReturnValue(null)
 
     renderMantine(<TipTapEditor content="Initial content" onChange={vi.fn()} />)
 
@@ -73,7 +78,7 @@ describe('TipTapEditor', () => {
   })
 
   it('renders loading text when editor is not ready and content is empty', () => {
-    vi.mocked(useEditor).mockReturnValue(null)
+    mockUseEditor.mockReturnValue(null)
 
     renderMantine(<TipTapEditor content="" onChange={vi.fn()} />)
 
@@ -81,9 +86,7 @@ describe('TipTapEditor', () => {
   })
 
   it('renders editor when ready', () => {
-    vi.mocked(useEditor).mockReturnValue(
-      mockEditor as unknown as ReturnType<typeof useEditor>
-    )
+    mockUseEditor.mockReturnValue(mockEditor)
 
     renderMantine(<TipTapEditor content="<p>Hello</p>" onChange={vi.fn()} />)
 
@@ -93,16 +96,15 @@ describe('TipTapEditor', () => {
   it('calls onChange when editor updates', () => {
     const onChange = vi.fn()
 
-    vi.mocked(useEditor).mockImplementation(
-      (options: {
+    mockUseEditor.mockImplementation((options) => {
+      const typedOptions = options as {
         onUpdate?: (props: { editor: typeof mockEditor }) => void
-      }) => {
-        if (options?.onUpdate) {
-          options.onUpdate({ editor: mockEditor })
-        }
-        return mockEditor as unknown as ReturnType<typeof useEditor>
       }
-    )
+      if (typedOptions?.onUpdate) {
+        typedOptions.onUpdate({ editor: mockEditor })
+      }
+      return mockEditor
+    })
 
     renderMantine(<TipTapEditor content="<p>Test</p>" onChange={onChange} />)
 

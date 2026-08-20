@@ -34,16 +34,20 @@ vi.mock('../actions', () => ({
 describe('NotesTable', () => {
   const mockNotes = [
     {
-      id: 'note-1',
+      id: 1,
       title: 'First Note',
       content: 'This is the first note content',
+      ownerId: 'user-1',
       createdAt: '2026-04-29T00:00:00.000Z',
+      updatedAt: '2026-04-29T00:00:00.000Z',
     },
     {
-      id: 'note-2',
+      id: 2,
       title: 'Second Note',
       content: 'This is the second note content',
+      ownerId: 'user-1',
       createdAt: '2026-04-28T00:00:00.000Z',
+      updatedAt: '2026-04-28T00:00:00.000Z',
     },
   ]
 
@@ -103,7 +107,7 @@ describe('NotesTable', () => {
     // Skip header row
     fireEvent.click(rows[1])
 
-    expect(mockPush).toHaveBeenCalledWith('/notes/note-1')
+    expect(mockPush).toHaveBeenCalledWith('/notes/1')
   })
 
   it('does not navigate when clicking delete button', () => {

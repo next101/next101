@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { AuthCard, AuthHeader } from '@/components/common'
 import { siteLinks } from '@/config'
 import { SignUpForm } from './components'
@@ -14,7 +15,9 @@ export default function SignUpPage() {
         />
       }
     >
-      <SignUpForm />
+      <Suspense>
+        <SignUpForm />
+      </Suspense>
     </AuthCard>
   )
 }

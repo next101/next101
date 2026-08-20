@@ -148,8 +148,10 @@ describe('useSignOut', () => {
 
   it('sets isSigningOut to false when pathname changes to sign-in page', async () => {
     const { authClient } = await import('@/lib/client')
-    const navigation = await import('next/navigation')
-    const { __setPathname } = navigation as never
+    const navigation = (await import('next/navigation')) as unknown as {
+      __setPathname: (path: string) => void
+    }
+    const { __setPathname } = navigation
     vi.mocked(authClient.signOut).mockResolvedValueOnce({} as never)
 
     const { result, rerender } = renderHook(() => useSignOut(), {
