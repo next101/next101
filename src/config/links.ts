@@ -20,4 +20,7 @@ export const siteLinks = {
   github: {
     repo: 'https://github.com/starfold/starfold',
   },
+  discord: 'https://discord.gg/starfold',
+  twitter: 'https://x.com/starfolddev',
+  mail: 'mailto:hello@starfold.dev',
 } as const
