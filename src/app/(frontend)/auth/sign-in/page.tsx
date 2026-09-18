@@ -9,7 +9,7 @@ export default function SignInPage() {
       header={
         <AuthHeader
           title="Welcome back!"
-          linkPrefix="New to Starfold?"
+          linkPrefix="New to Next101?"
           linkText="Create an account"
           linkHref={siteLinks.auth.signUp}
         />

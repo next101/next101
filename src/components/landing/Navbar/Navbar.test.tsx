@@ -13,7 +13,7 @@ describe('Navbar', () => {
     })
 
     it('renders logo and nav links', () => {
-      expect(within(container).getByText('Starfold')).toBeInTheDocument()
+      expect(within(container).getByText('Next101')).toBeInTheDocument()
       // Nav links are now rendered in both desktop and mobile dropdown
       // So we check they exist at least once
       const features = within(container).getAllByText('Features')
@@ -40,7 +40,7 @@ describe('Navbar', () => {
   describe('non-landing mode', () => {
     it('renders logo with title', () => {
       const { container } = renderMantine(<Navbar />)
-      expect(within(container).getByText('Starfold')).toBeInTheDocument()
+      expect(within(container).getByText('Next101')).toBeInTheDocument()
     })
 
     it('renders user menu when user is provided', () => {

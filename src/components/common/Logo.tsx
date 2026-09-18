@@ -13,10 +13,10 @@ type LogoProps = {
 export function Logo({ height = sizes.x8i, width = sizes.x8i }: LogoProps) {
   return (
     <Image
-      alt="Starfold"
+      alt="Next101"
       height={height}
       width={width}
-      src="/static/assets/logo/starfold.png"
+      src="/static/assets/logo/next101.png"
     />
   )
 }
@@ -30,7 +30,7 @@ export function LogoWithTitle({
       <Group gap="sm">
         <Logo height={height} width={width} />
         <Text fw={700} size="md" c="bright">
-          Starfold
+          Next101
         </Text>
       </Group>
     </Link>

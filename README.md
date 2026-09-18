@@ -1,16 +1,16 @@
-# Starfold
+# Next101
 
 > A Next.js SaaS starter kit with everything you need to go from zero to
 > production in minutes.
 
-[![GitHub CI](https://github.com/starfold/starfold/workflows/test/badge.svg)](https://github.com/starfold/starfold/actions/workflows/test.yml)
-[![License](https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-blue?style=flat-square)](https://github.com/starfold/starfold/blob/main/LICENSE)
+[![GitHub CI](https://github.com/next101/next101/workflows/test/badge.svg)](https://github.com/next101/next101/actions/workflows/test.yml)
+[![License](https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-blue?style=flat-square)](https://github.com/next101/next101/blob/main/LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-FE5196?style=flat-square&logo=conventionalcommits)](https://conventionalcommits.org)
 [![Biome](https://img.shields.io/badge/Biome-Linted-60a5fa?style=flat-square&logo=biome)](https://biomejs.dev/)
 [![Vitest](https://img.shields.io/badge/Vitest-Tested-6E9F18?style=flat-square&logo=vitest)](https://vitest.dev/)
 
-Starfold is a carefully curated, production-ready starter built on **Next.js
+Next101 is a carefully curated, production-ready starter built on **Next.js
 16**, **Payload CMS 3**, and **Mantine v9**. It wires together modern auth,
 payments, CMS, emails, and UI so you can skip the boilerplate and focus on your
 product.
@@ -38,7 +38,7 @@ product.
 
 ## Core Design
 
-Starfold uses a **dual-auth architecture** that unifies admin and customer
+Next101 uses a **dual-auth architecture** that unifies admin and customer
 authentication through Payload's access control system.
 
 - **Payload CMS** handles data modeling and admin panel access. Collections are
@@ -86,8 +86,8 @@ src/
 ### 1. Clone and install
 
 ```bash
-git clone <repo-url> starfold
-cd starfold
+git clone <repo-url> next101
+cd next101
 pnpm install
 ```
 

@@ -8,7 +8,7 @@ export function GitHubLink() {
       aria-label="GitHub"
       color="gray"
       component="a"
-      href="https://github.com/starfold/starfold"
+      href="https://github.com/next101/next101"
       target="_blank"
       rel="noopener noreferrer"
       size={sizes.x8}

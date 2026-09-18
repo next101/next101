@@ -43,7 +43,7 @@ export function OpenGraph({ title }: OpenGraphProps) {
           gap: '8px',
         }}
       >
-        {/* This svg is coming from the /public/static/assets/logo/starfold.svg
+        {/* This svg is coming from the /public/static/assets/logo/next101.svg
         file, with a slight modification to fit of height and width, you can
         replace it with your own logo or any svg you like. */}
         <svg
@@ -54,14 +54,14 @@ export function OpenGraph({ title }: OpenGraphProps) {
           aria-hidden="true"
           role="img"
         >
-          <circle cx="256" cy="256" r="256" fill="#000000" />
-          <g fill="#ffffff">
-            <path d="M 256 60 L 268 112 L 320 124 L 268 136 L 256 188 L 244 136 L 192 124 L 244 112 Z" />
-            <rect x="116" y="220" width="80" height="120" />
-            <rect x="216" y="260" width="80" height="80" />
-            <rect x="316" y="260" width="80" height="80" />
-            <path d="M 86 360 L 146 430 L 366 430 L 426 360 Z" />
+          <circle cx="256" cy="256" r="256" fill="#111318" />
+          <g fill="#F4F6FB">
+            <rect x="108" y="100" width="88" height="312" rx="14" />
+            <rect x="316" y="100" width="88" height="312" rx="14" />
+            <polygon points="188,100 276,100 332,412 244,412" />
           </g>
+          <circle cx="256" cy="256" r="82" fill="#5C7CFA" />
+          <circle cx="256" cy="256" r="50" fill="#111318" />
         </svg>
         <h1
           style={{
@@ -73,7 +73,7 @@ export function OpenGraph({ title }: OpenGraphProps) {
             textShadow: '0 2px 4px rgba(0,0,0,0.3)',
           }}
         >
-          Starfold
+          Next101
         </h1>
       </div>
       <p

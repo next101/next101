@@ -9,12 +9,12 @@ describe('AuthHeader', () => {
     renderMantine(
       <AuthHeader
         title="Welcome back!"
-        linkPrefix="New to Starfold?"
+        linkPrefix="New to Next101?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
       />
     )
-    const logo = screen.getByAltText('Starfold')
+    const logo = screen.getByAltText('Next101')
     expect(logo).toBeInTheDocument()
     expect(logo).toHaveAttribute('width', '64')
     expect(logo).toHaveAttribute('height', '64')
@@ -24,7 +24,7 @@ describe('AuthHeader', () => {
     renderMantine(
       <AuthHeader
         title="Welcome back!"
-        linkPrefix="New to Starfold?"
+        linkPrefix="New to Next101?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
       />
@@ -38,12 +38,12 @@ describe('AuthHeader', () => {
     renderMantine(
       <AuthHeader
         title="Welcome back!"
-        linkPrefix="New to Starfold?"
+        linkPrefix="New to Next101?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
       />
     )
-    expect(screen.getByText('New to Starfold?')).toBeInTheDocument()
+    expect(screen.getByText('New to Next101?')).toBeInTheDocument()
   })
 
   it('renders link with correct text and href', () => {
@@ -81,7 +81,7 @@ describe('AuthHeader', () => {
     const { container } = renderMantine(
       <AuthHeader
         title="Welcome back!"
-        linkPrefix="New to Starfold?"
+        linkPrefix="New to Next101?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
       />
@@ -96,7 +96,7 @@ describe('AuthHeader', () => {
     renderMantine(
       <AuthHeader
         title="Welcome back!"
-        linkPrefix="New to Starfold?"
+        linkPrefix="New to Next101?"
         linkText="Create an account"
         linkHref={siteLinks.auth.signUp}
       />

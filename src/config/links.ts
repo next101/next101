@@ -18,9 +18,9 @@ export const siteLinks = {
     resetPassword: '/auth/reset-password',
   },
   github: {
-    repo: 'https://github.com/starfold/starfold',
+    repo: 'https://github.com/next101/next101',
   },
-  discord: 'https://discord.gg/starfold',
-  twitter: 'https://x.com/starfolddev',
-  mail: 'mailto:hello@starfold.dev',
+  discord: 'https://discord.gg/next101',
+  twitter: 'https://x.com/next101dev',
+  mail: 'mailto:hello@next101.dev',
 } as const

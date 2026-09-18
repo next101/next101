@@ -17,7 +17,7 @@ describe('SignOutOverlay', () => {
 
   it('renders Logo component', () => {
     renderMantine(<SignOutOverlay visible={true} />)
-    const logo = screen.getByAltText('Starfold')
+    const logo = screen.getByAltText('Next101')
     expect(logo).toBeInTheDocument()
   })
 

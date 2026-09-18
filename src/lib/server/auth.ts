@@ -18,7 +18,7 @@ export const auth = betterAuth({
       const { html, text } = getResetPasswordEmailTemplates(url)
       resend.emails
         .send({
-          from: process.env.RESEND_FROM_EMAIL || 'noreply@starfold.dev',
+          from: process.env.RESEND_FROM_EMAIL || 'noreply@next101.dev',
           to: user.email,
           subject: 'Reset your password',
           html,

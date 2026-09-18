@@ -12,7 +12,7 @@ describe('Logo', () => {
   })
 
   it('renders logo image with alt text', () => {
-    const img = within(container).getByAltText('Starfold')
+    const img = within(container).getByAltText('Next101')
     expect(img).toBeInTheDocument()
   })
 })
@@ -26,12 +26,12 @@ describe('LogoWithTitle', () => {
   })
 
   it('renders logo image with alt text', () => {
-    const img = within(container).getByAltText('Starfold')
+    const img = within(container).getByAltText('Next101')
     expect(img).toBeInTheDocument()
   })
 
-  it('renders the Starfold title text', () => {
-    const title = within(container).getByText('Starfold')
+  it('renders the Next101 title text', () => {
+    const title = within(container).getByText('Next101')
     expect(title).toBeInTheDocument()
   })
 
@@ -44,7 +44,7 @@ describe('LogoWithTitle', () => {
     const { container: customContainer } = renderMantine(
       <LogoWithTitle width={100} height={50} />
     )
-    const img = within(customContainer).getByAltText('Starfold')
+    const img = within(customContainer).getByAltText('Next101')
     expect(img).toHaveAttribute('width', '100')
     expect(img).toHaveAttribute('height', '50')
   })

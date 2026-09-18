@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: 'Starfold',
-  shortName: 'Starfold',
+  name: 'Next101',
+  shortName: 'Next101',
   description: 'Next.js SaaS Kit Done Right',
-  url: 'https://starfold.dev',
-  ogImage: 'https://starfold.dev/static/assets/og.png',
+  url: 'https://next101.dev',
+  ogImage: 'https://next101.dev/static/assets/og.png',
 
   authors: [
     {

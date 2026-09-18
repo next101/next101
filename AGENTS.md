@@ -9,7 +9,7 @@ notices.
 
 <!-- END:nextjs-agent-rules -->
 
-# Starfold — Agent Guide
+# Next101 — Agent Guide
 
 ## Commands
 

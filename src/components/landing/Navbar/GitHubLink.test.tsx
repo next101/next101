@@ -17,10 +17,7 @@ describe(GitHubLink, () => {
   })
 
   it('renders link with correct href', () => {
-    expect(button).toHaveAttribute(
-      'href',
-      'https://github.com/starfold/starfold'
-    )
+    expect(button).toHaveAttribute('href', 'https://github.com/next101/next101')
   })
 
   it('has correct target and rel attributes', () => {
