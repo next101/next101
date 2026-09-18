@@ -1,0 +1,15 @@
+\documentclass[border=0pt]{standalone}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+% Page: 1024bp x 1024bp (bp = 1/72 inch, i.e. the PDF standard "point";
+% rasterizing with sips/pdftoppm -r 72 yields exactly 1024x1024 pixels)
+% Content area: 80% = 819.2bp, centered horizontally and vertically
+
+\begin{document}
+\begin{tikzpicture}
+  \useasboundingbox (-512bp,-512bp) rectangle (512bp,512bp);
+  \fill[black] (-512bp,-512bp) rectangle (512bp,512bp);
+  \node[text=white] at (0,0) {\resizebox{819.2bp}{!}{$\mathbb{N}\mkern0mu\mathrm{I}$}};
+\end{tikzpicture}
+\end{document}

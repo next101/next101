@@ -16,7 +16,12 @@ export function Logo({ height = sizes.x8i, width = sizes.x8i }: LogoProps) {
       alt="Next101"
       height={height}
       width={width}
-      src="/static/assets/logo/next101.png"
+      style={{
+        padding: '6px',
+        backgroundColor: 'black',
+        borderRadius: '50%',
+      }}
+      src="/static/assets/logo/logo.png"
     />
   )
 }

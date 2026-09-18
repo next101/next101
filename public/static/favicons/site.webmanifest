@@ -1,6 +1,6 @@
 {
-  "name": "Starfold",
-  "short_name": "Starfold",
+  "name": "Next101",
+  "short_name": "Next101",
   "icons": [
     {
       "src": "/static/favicons/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "display": "standalone"
 }
