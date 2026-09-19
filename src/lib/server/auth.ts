@@ -8,7 +8,18 @@ const pool = new Pool({
   connectionString: process.env.BETTER_AUTH_DATABASE_URL,
 })
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+let resendClient: Resend | undefined
+
+function getResendClient(): Resend {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    throw new Error(
+      'RESEND_API_KEY is not set. Add it to the runtime environment.'
+    )
+  }
+  resendClient ??= new Resend(apiKey)
+  return resendClient
+}
 
 export const auth = betterAuth({
   database: pool,
@@ -16,8 +27,8 @@ export const auth = betterAuth({
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
       const { html, text } = getResetPasswordEmailTemplates(url)
-      resend.emails
-        .send({
+      getResendClient()
+        .emails.send({
           from: process.env.RESEND_FROM_EMAIL || 'noreply@next101.dev',
           to: user.email,
           subject: 'Reset your password',
