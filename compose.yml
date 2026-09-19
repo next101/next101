@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: next101
+      POSTGRES_PASSWORD: next101
+      POSTGRES_DB: next101
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres-init.sql:/docker-entrypoint-initdb.d/01-init-auth-db.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U next101 -d next101']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_BETTER_AUTH_URL: ${NEXT_PUBLIC_BETTER_AUTH_URL}
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      PAYLOAD_DATABASE_URL: postgres://next101:next101@postgres:5432/next101
+      BETTER_AUTH_DATABASE_URL: postgres://next101:next101@postgres:5432/next101_auth
+
+volumes:
+  pgdata:

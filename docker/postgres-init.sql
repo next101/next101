@@ -1,0 +1,1 @@
+CREATE DATABASE next101_auth;
