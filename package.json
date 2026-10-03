@@ -36,6 +36,7 @@
     "@payloadcms/db-postgres": "^3.90.1",
     "@payloadcms/next": "^3.90.1",
     "@payloadcms/richtext-lexical": "^3.90.1",
+    "@plausible-analytics/tracker": "^0.4.6",
     "@tabler/icons-react": "^3.47.0",
     "@tiptap/extension-link": "^3.31.3",
     "@tiptap/pm": "^3.31.3",

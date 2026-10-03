@@ -23,6 +23,11 @@ declare global {
       // Google
       GOOGLE_CLIENT_ID: string
       GOOGLE_CLIENT_SECRET: string
+
+      // Plausible Analytics (optional)
+      NEXT_PUBLIC_PLAUSIBLE_ENABLED?: string
+      NEXT_PUBLIC_PLAUSIBLE_DOMAIN?: string
+      NEXT_PUBLIC_PLAUSIBLE_ENDPOINT?: string
     }
   }
 }

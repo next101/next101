@@ -11,6 +11,7 @@ import {
 } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import type { Metadata } from 'next'
+import { PlausibleTracker } from '@/components/analytics/plausible-tracker'
 import { siteConfig } from '@/config'
 import { resolver, theme } from './theme'
 
@@ -86,6 +87,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <ColorSchemeScript defaultColorScheme="auto" />
       </head>
       <body>
+        <PlausibleTracker />
         <MantineProvider
           theme={theme}
           cssVariablesResolver={resolver}
